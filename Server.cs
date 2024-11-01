@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using MyApiApp.Data;
 using MyApiApp.Services;
@@ -30,7 +31,8 @@ public class Server
         var key = Encoding.ASCII.GetBytes(secretKey);
 
         // Регистрация сервисов
-        builder.Services.AddSingleton(new TokenService(secretKey));
+        builder.Services.AddSingleton<TokenService>(provider => 
+            new TokenService(secretKey, provider.GetRequiredService<ILogger<TokenService>>()));
         builder.Services.AddSingleton<PasswordService>();
 
         // Добавление кеширования и сессий

@@ -25,7 +25,7 @@ public class Client
             Console.WriteLine("4 - Добавить контакт");
             Console.WriteLine("5 - Посмотреть все контакты");
             Console.WriteLine("6 - Найти контакт");
-            Console.WriteLine("7 - Найти контакт по имени (бинарный поиск)");
+            Console.WriteLine("7 - Изменить контакт");
             Console.WriteLine("8 - Удалить контакт");
             Console.WriteLine(new string('-', 30));
             Console.WriteLine("История запросов:");
@@ -58,7 +58,7 @@ public class Client
                     await SearchContacts();
                     break;
                 case "7":
-                    await SearchContactByName();
+                    await EditContact();
                     break;
                 case "8":
                     await DeleteContact();
@@ -120,7 +120,7 @@ public class Client
         }
         else
         {
-            var errorContent = await response.Content.ReadAsStringAsync(); // Добавляем вывод ошибки
+            var errorContent = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"Ошибка регистрации: {response.StatusCode}, {errorContent}");
         }
     }
@@ -300,90 +300,6 @@ public class Client
         }
     }
 
-    // Метод для поиска контакта по имени с использованием бинарного поиска
-    private static async Task SearchContactByName()
-    {
-        var contacts = await GetAllContactsArray();
-
-        Console.WriteLine("Введите имя контакта для поиска:");
-        var nameToSearch = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(nameToSearch))
-        {
-            Console.WriteLine("Имя для поиска не может быть пустым.");
-            return;
-        }
-
-        var index = BinarySearch(contacts, nameToSearch);
-
-
-        if (index != -1)
-        {
-            var contact = contacts[index];
-            Console.WriteLine($"Найден контакт: Имя: {contact.Name}, Телефон: {contact.PhoneNumber}, Email: {contact.Email}, Адрес: {contact.Address}");
-        }
-        else
-        {
-            Console.WriteLine("Контакт не найден.");
-        }
-    }
-
-    // Метод для получения всех контактов как массив
-    private static async Task<Contact[]> GetAllContactsArray()
-    {
-        var response = await client.GetAsync("http://localhost:5194/api/contacts");
-
-        if (response.IsSuccessStatusCode)
-        {
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var contacts = JsonConvert.DeserializeObject<Contact[]>(responseContent);
-
-            if (contacts == null || contacts.Length == 0)
-            {
-                Console.WriteLine("Список контактов пуст.");
-                return Array.Empty<Contact>();
-            }
-
-            Array.Sort(contacts, (x, y) => string.Compare(x.Name, y.Name, StringComparison.OrdinalIgnoreCase));
-
-            return contacts;
-        }
-        else
-        {
-            Console.WriteLine("Ошибка получения контактов.");
-            return Array.Empty<Contact>();
-        }
-    }
-
-    // Метод бинарного поиска
-    private static int BinarySearch(Contact[] contacts, string name)
-    {
-        int left = 0;
-        int right = contacts.Length - 1;
-
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            
-            int comparison = string.Compare(contacts[mid].Name, name, StringComparison.OrdinalIgnoreCase);
-
-            if (comparison == 0)
-            {
-                return mid;
-            }
-            else if (comparison < 0)
-            {
-                left = mid + 1;
-            }
-            else
-            {
-                right = mid - 1;
-            }
-        }
-
-        return -1;
-    }
-
     // Метод для удаления контакта
     private static async Task DeleteContact()
     {
@@ -401,6 +317,48 @@ public class Client
             Console.WriteLine("Ошибка удаления контакта.");
         }
     }
+
+    // Метод для изменения контакта
+    private static async Task EditContact()
+    {
+        Console.WriteLine("Введите ID контакта, который хотите изменить:");
+        var id = Console.ReadLine();
+
+        Console.WriteLine("Введите новое имя контакта (оставьте пустым, если не хотите изменять):");
+        var newName = Console.ReadLine();
+
+        Console.WriteLine("Введите новый номер телефона (оставьте пустым, если не хотите изменять):");
+        var newPhoneNumber = Console.ReadLine();
+
+        Console.WriteLine("Введите новый email (оставьте пустым, если не хотите изменять):");
+        var newEmail = Console.ReadLine();
+
+        Console.WriteLine("Введите новый адрес (оставьте пустым, если не хотите изменять):");
+        var newAddress = Console.ReadLine();
+
+        var updatedContact = new Contact
+        {
+            Name = string.IsNullOrWhiteSpace(newName) ? null : newName,
+            PhoneNumber = string.IsNullOrWhiteSpace(newPhoneNumber) ? null : newPhoneNumber,
+            Email = string.IsNullOrWhiteSpace(newEmail) ? null : newEmail,
+            Address = string.IsNullOrWhiteSpace(newAddress) ? null : newAddress
+        };
+
+        var json = JsonConvert.SerializeObject(updatedContact);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await client.PatchAsync($"http://localhost:5194/api/contacts/{id}", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Контакт успешно изменен.");
+        }
+        else
+        {
+            Console.WriteLine("Ошибка изменения контакта.");
+        }
+    }
+
     
     // Метод для показа истории запросов
     public static async Task GetRequestHistory()

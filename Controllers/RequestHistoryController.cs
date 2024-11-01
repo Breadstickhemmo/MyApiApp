@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyApiApp.Data;
+using Microsoft.Extensions.Logging;
 
 namespace MyApiApp.Controllers
 {
@@ -11,48 +12,64 @@ namespace MyApiApp.Controllers
     public class RequestHistoryController : ControllerBase
     {
         private readonly HistoryDbContext _historyDbContext;
+        private readonly ILogger<RequestHistoryController> _logger;
 
-        public RequestHistoryController(HistoryDbContext historyDbContext)
+        public RequestHistoryController(HistoryDbContext historyDbContext, ILogger<RequestHistoryController> logger)
         {
             _historyDbContext = historyDbContext;
+            _logger = logger;
         }
 
-        // GET: api/RequestHistory
         [HttpGet]
         public async Task<IActionResult> GetRequestHistory()
         {
-            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-            if (userIdClaim != null && int.TryParse(userIdClaim, out int userId))
+            try
             {
-                var History = await _historyDbContext.History
-                    .Where(r => r.UserId == userId)
-                    .ToListAsync();
+                var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-                return Ok(History);
+                if (userIdClaim != null && int.TryParse(userIdClaim, out int userId))
+                {
+                    var history = await _historyDbContext.History
+                        .Where(r => r.UserId == userId)
+                        .ToListAsync();
+
+                    return Ok(history);
+                }
+
+                return Unauthorized();
             }
-
-            return Unauthorized();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ошибка при получении истории запросов.");
+                return StatusCode(500, "Произошла ошибка при получении истории запросов.");
+            }
         }
 
-        // DELETE: api/RequestHistory
         [HttpDelete]
         public async Task<IActionResult> DeleteRequestHistory()
         {
-            var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-
-            if (userIdClaim != null && int.TryParse(userIdClaim, out int userId))
+            try
             {
-                var userHistory = _historyDbContext.History
-                    .Where(r => r.UserId == userId);
+                var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-                _historyDbContext.History.RemoveRange(userHistory);
-                await _historyDbContext.SaveChangesAsync();
+                if (userIdClaim != null && int.TryParse(userIdClaim, out int userId))
+                {
+                    var userHistory = _historyDbContext.History
+                        .Where(r => r.UserId == userId);
 
-                return NoContent();
+                    _historyDbContext.History.RemoveRange(userHistory);
+                    await _historyDbContext.SaveChangesAsync();
+
+                    return NoContent();
+                }
+
+                return Unauthorized();
             }
-
-            return Unauthorized();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ошибка при удалении истории запросов.");
+                return StatusCode(500, "Произошла ошибка при удалении истории запросов.");
+            }
         }
     }
 }

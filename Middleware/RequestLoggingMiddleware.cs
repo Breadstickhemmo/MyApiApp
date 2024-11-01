@@ -2,14 +2,17 @@ using MyApiApp.Data;
 using MyApiApp.Models;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 public class RequestLoggingMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<RequestLoggingMiddleware> _logger;
 
-    public RequestLoggingMiddleware(RequestDelegate next)
+    public RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -27,11 +30,18 @@ public class RequestLoggingMiddleware
 
                 if (context.Request.Method != HttpMethods.Get)
                 {
-                    context.Request.Body.Position = 0;
-                    using (var reader = new StreamReader(context.Request.Body, Encoding.UTF8, leaveOpen: true))
+                    try
                     {
-                        bodyContent = await reader.ReadToEndAsync();
                         context.Request.Body.Position = 0;
+                        using (var reader = new StreamReader(context.Request.Body, Encoding.UTF8, leaveOpen: true))
+                        {
+                            bodyContent = await reader.ReadToEndAsync();
+                            context.Request.Body.Position = 0;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Ошибка при чтении тела запроса.");
                     }
                 }
 
@@ -45,19 +55,18 @@ public class RequestLoggingMiddleware
                     BodyContent = bodyContent
                 };
 
-                historyDbContext.History.Add(historyRecord);
                 try
                 {
+                    historyDbContext.History.Add(historyRecord);
                     await historyDbContext.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Ошибка при сохранении данных: {ex.Message}");
+                    _logger.LogError(ex, "Ошибка при сохранении данных в истории запросов.");
                 }
             }
         }
 
         await _next(context);
     }
-
 }
