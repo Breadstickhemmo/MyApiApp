@@ -1,0 +1,12 @@
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.TestHost;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using MyApiApp.Data;
+global using MyApiApp.Models;
+global using MyApiApp.Services;
+global using Newtonsoft.Json;
+global using System.Net.Http.Headers;
+global using System.Text;
+global using NUnit.Framework;
