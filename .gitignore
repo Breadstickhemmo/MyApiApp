@@ -2,5 +2,5 @@
 /obj/
 /DB/*
 !/DB/.gitignore
-MyApiApp.Tests/bin
-MyApiApp.Tests/obj
+MyApiApp.Tests/bin/
+MyApiApp.Tests/obj/
