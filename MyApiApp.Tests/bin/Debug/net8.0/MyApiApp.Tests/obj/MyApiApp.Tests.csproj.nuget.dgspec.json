@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj": {}
+    "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj": {}
   },
   "projects": {
-    "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj": {
+    "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj",
+        "projectUniqueName": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj",
         "projectName": "MyApiApp.Tests",
-        "projectPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj",
+        "projectPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj",
         "packagesPath": "/home/dmitraks/.nuget/packages/",
-        "outputPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/obj/",
+        "outputPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/dmitraks/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj": {
-                "projectPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj"
+              "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj": {
+                "projectPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj"
               }
             }
           }
@@ -95,14 +95,14 @@
         }
       }
     },
-    "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj": {
+    "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj",
+        "projectUniqueName": "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj",
         "projectName": "MyApiApp",
-        "projectPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj",
+        "projectPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj",
         "packagesPath": "/home/dmitraks/.nuget/packages/",
-        "outputPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/obj/",
+        "outputPath": "/home/dmitraks/Projects/MyApiApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/dmitraks/.nuget/NuGet/NuGet.Config"
@@ -162,6 +162,10 @@
             "NUnit": {
               "target": "Package",
               "version": "[4.2.2, )"
+            },
+            "NUnit.ConsoleRunner": {
+              "target": "Package",
+              "version": "[3.18.3, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

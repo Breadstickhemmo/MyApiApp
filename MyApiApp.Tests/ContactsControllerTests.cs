@@ -77,7 +77,7 @@ namespace MyApiApp.Tests
             // Вход для получения токена
             var loginResponse = await _client.PostAsync("api/Auth/login", loginContent);
             var loginResult = await loginResponse.Content.ReadAsStringAsync();
-            var loginData = JsonConvert.DeserializeObject<LoginResponse>(loginResult);
+            var loginData = JsonConvert.DeserializeObject<TestLoginResponse>(loginResult);
             var token = loginData?.Token;
 
             Assert.That(token, Is.Not.Null);
@@ -130,7 +130,7 @@ namespace MyApiApp.Tests
             // Вход для получения токена
             var loginResponse = await _client.PostAsync("api/Auth/login", loginContent);
             var loginResult = await loginResponse.Content.ReadAsStringAsync();
-            var loginData = JsonConvert.DeserializeObject<LoginResponse>(loginResult);
+            var loginData = JsonConvert.DeserializeObject<TestLoginResponse>(loginResult);
             var token = loginData?.Token;
 
             Assert.That(token, Is.Not.Null);
@@ -186,7 +186,7 @@ namespace MyApiApp.Tests
             // Вход для получения токена
             var loginResponse = await _client.PostAsync("api/Auth/login", loginContent);
             var loginResult = await loginResponse.Content.ReadAsStringAsync();
-            var loginData = JsonConvert.DeserializeObject<LoginResponse>(loginResult);
+            var loginData = JsonConvert.DeserializeObject<TestLoginResponse>(loginResult);
             var token = loginData?.Token;
 
             Assert.That(token, Is.Not.Null);
@@ -256,7 +256,7 @@ namespace MyApiApp.Tests
             // Вход для получения токена
             var loginResponse = await _client.PostAsync("api/Auth/login", loginContent);
             var loginResult = await loginResponse.Content.ReadAsStringAsync();
-            var loginData = JsonConvert.DeserializeObject<LoginResponse>(loginResult);
+            var loginData = JsonConvert.DeserializeObject<TestLoginResponse>(loginResult);
             var token = loginData?.Token;
 
             Assert.That(token, Is.Not.Null);
@@ -313,7 +313,7 @@ namespace MyApiApp.Tests
             // Вход для получения токена
             var loginResponse = await _client.PostAsync("api/Auth/login", loginContent);
             var loginResult = await loginResponse.Content.ReadAsStringAsync();
-            var loginData = JsonConvert.DeserializeObject<LoginResponse>(loginResult);
+            var loginData = JsonConvert.DeserializeObject<TestLoginResponse>(loginResult);
             var token = loginData?.Token;
 
             Assert.That(token, Is.Not.Null);

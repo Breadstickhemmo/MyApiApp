@@ -1,10 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using MyApiApp.Data;
-using MyApiApp.Services;
-using System.Text;
-
 public class Server
 {
     public static async Task Run()

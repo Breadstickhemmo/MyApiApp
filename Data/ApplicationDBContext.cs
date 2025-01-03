@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using MyApiApp.Models;
-
 namespace MyApiApp.Data
 {
     public class ApplicationDbContext : DbContext

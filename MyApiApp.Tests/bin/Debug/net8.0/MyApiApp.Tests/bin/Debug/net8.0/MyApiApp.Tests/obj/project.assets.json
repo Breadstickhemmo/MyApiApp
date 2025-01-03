@@ -856,6 +856,9 @@
       "NUnit.Analyzers/4.4.0": {
         "type": "package"
       },
+      "NUnit.ConsoleRunner/3.18.3": {
+        "type": "package"
+      },
       "NUnit3TestAdapter/4.6.0": {
         "type": "package",
         "build": {
@@ -1220,6 +1223,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "9.0.0",
           "Moq": "4.20.72",
           "NUnit": "4.2.2",
+          "NUnit.ConsoleRunner": "3.18.3",
           "Newtonsoft.Json": "13.0.3",
           "Swashbuckle.AspNetCore": "7.1.0"
         },
@@ -2574,6 +2578,78 @@
         "tools/uninstall.ps1"
       ]
     },
+    "NUnit.ConsoleRunner/3.18.3": {
+      "sha512": "Z1MBcbf8Q/R3JhugoqkxdO5wBml7Tq26zukHcdomt5wXlJn3usfice3ABkO18g6ragdVotg9GBMMb+IzYDDCqQ==",
+      "type": "package",
+      "path": "nunit.consolerunner/3.18.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "NOTICES.txt",
+        "images/nunit_256.png",
+        "nunit.consolerunner.3.18.3.nupkg.sha512",
+        "nunit.consolerunner.nuspec",
+        "tools/agents/net462/nunit-agent-x86.exe",
+        "tools/agents/net462/nunit-agent-x86.exe.config",
+        "tools/agents/net462/nunit-agent.exe",
+        "tools/agents/net462/nunit-agent.exe.config",
+        "tools/agents/net462/nunit.console.nuget.agent.addins",
+        "tools/agents/net462/nunit.engine.api.dll",
+        "tools/agents/net462/nunit.engine.api.xml",
+        "tools/agents/net462/nunit.engine.core.dll",
+        "tools/agents/net462/testcentric.engine.metadata.dll",
+        "tools/agents/net6.0/Microsoft.Extensions.DependencyModel.dll",
+        "tools/agents/net6.0/nunit-agent.deps.json",
+        "tools/agents/net6.0/nunit-agent.dll",
+        "tools/agents/net6.0/nunit-agent.dll.config",
+        "tools/agents/net6.0/nunit-agent.runtimeconfig.json",
+        "tools/agents/net6.0/nunit.console.nuget.agent.addins",
+        "tools/agents/net6.0/nunit.engine.api.dll",
+        "tools/agents/net6.0/nunit.engine.api.xml",
+        "tools/agents/net6.0/nunit.engine.core.dll",
+        "tools/agents/net6.0/testcentric.engine.metadata.dll",
+        "tools/agents/net7.0/Microsoft.Extensions.DependencyModel.dll",
+        "tools/agents/net7.0/nunit-agent.deps.json",
+        "tools/agents/net7.0/nunit-agent.dll",
+        "tools/agents/net7.0/nunit-agent.dll.config",
+        "tools/agents/net7.0/nunit-agent.runtimeconfig.json",
+        "tools/agents/net7.0/nunit.console.nuget.agent.addins",
+        "tools/agents/net7.0/nunit.engine.api.dll",
+        "tools/agents/net7.0/nunit.engine.api.xml",
+        "tools/agents/net7.0/nunit.engine.core.dll",
+        "tools/agents/net7.0/testcentric.engine.metadata.dll",
+        "tools/agents/net8.0/Microsoft.Extensions.DependencyModel.dll",
+        "tools/agents/net8.0/nunit-agent.deps.json",
+        "tools/agents/net8.0/nunit-agent.dll",
+        "tools/agents/net8.0/nunit-agent.dll.config",
+        "tools/agents/net8.0/nunit-agent.runtimeconfig.json",
+        "tools/agents/net8.0/nunit.console.nuget.agent.addins",
+        "tools/agents/net8.0/nunit.engine.api.dll",
+        "tools/agents/net8.0/nunit.engine.api.xml",
+        "tools/agents/net8.0/nunit.engine.core.dll",
+        "tools/agents/net8.0/testcentric.engine.metadata.dll",
+        "tools/agents/netcoreapp3.1/Microsoft.Extensions.DependencyModel.dll",
+        "tools/agents/netcoreapp3.1/nunit-agent.deps.json",
+        "tools/agents/netcoreapp3.1/nunit-agent.dll",
+        "tools/agents/netcoreapp3.1/nunit-agent.dll.config",
+        "tools/agents/netcoreapp3.1/nunit-agent.runtimeconfig.json",
+        "tools/agents/netcoreapp3.1/nunit.console.nuget.agent.addins",
+        "tools/agents/netcoreapp3.1/nunit.engine.api.dll",
+        "tools/agents/netcoreapp3.1/nunit.engine.api.xml",
+        "tools/agents/netcoreapp3.1/nunit.engine.core.dll",
+        "tools/agents/netcoreapp3.1/testcentric.engine.metadata.dll",
+        "tools/nunit.console.nuget.addins",
+        "tools/nunit.engine.api.dll",
+        "tools/nunit.engine.api.xml",
+        "tools/nunit.engine.core.dll",
+        "tools/nunit.engine.dll",
+        "tools/nunit3-console.exe",
+        "tools/nunit3-console.exe.config",
+        "tools/testcentric.engine.metadata.dll"
+      ]
+    },
     "NUnit3TestAdapter/4.6.0": {
       "sha512": "R7e1+a4vuV/YS+ItfL7f//rG+JBvVeVLX4mHzFEZo4W1qEKl8Zz27AqvQSAqo+BtIzUCo4aAJMYa56VXS4hudw==",
       "type": "package",
@@ -3061,11 +3137,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj",
+      "projectUniqueName": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj",
       "projectName": "MyApiApp.Tests",
-      "projectPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/MyApiApp.Tests.csproj",
+      "projectPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/MyApiApp.Tests.csproj",
       "packagesPath": "/home/dmitraks/.nuget/packages/",
-      "outputPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.Tests/obj/",
+      "outputPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/dmitraks/.nuget/NuGet/NuGet.Config"
@@ -3080,8 +3156,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj": {
-              "projectPath": "/home/dmitraks/Projects/MyApiApp-master-3-test/MyApiApp.csproj"
+            "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj": {
+              "projectPath": "/home/dmitraks/Projects/MyApiApp/MyApiApp.csproj"
             }
           }
         }

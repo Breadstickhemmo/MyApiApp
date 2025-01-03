@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyApiApp.Data;
-using Microsoft.Extensions.Logging;
 
 namespace MyApiApp.Controllers
 {

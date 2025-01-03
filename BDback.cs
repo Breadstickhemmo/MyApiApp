@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using MyApiApp.Data;
-
 public static class BDback
 {
     public static async Task InitializeUserDatabase(ApplicationDbContext context)

@@ -1,9 +1,4 @@
-using MyApiApp.Data;
-using MyApiApp.Models;
 using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Logging;
-
 public class RequestLoggingMiddleware
 {
     private readonly RequestDelegate _next;

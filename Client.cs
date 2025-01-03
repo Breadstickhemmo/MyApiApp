@@ -1,7 +1,3 @@
-using System.Text;
-using Newtonsoft.Json;
-using MyApiApp.Models;
-
 public class Client
 {
     private static readonly HttpClient client = new HttpClient();

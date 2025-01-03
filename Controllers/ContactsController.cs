@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyApiApp.Data;
-using MyApiApp.Models;
 using System.Security.Claims;
 
 namespace MyApiApp.Controllers

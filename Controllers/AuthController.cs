@@ -1,9 +1,5 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using MyApiApp.Data;
-using MyApiApp.Models;
-using MyApiApp.Services;
 
 namespace MyApiApp.Controllers
 {
